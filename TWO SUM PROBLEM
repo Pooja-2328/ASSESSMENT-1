@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class TwoSum {
+
+    public static int[] findTwoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+            map.put(nums[i], i);
+        }
+        return new int[] {};
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Input array size
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+        
+        // Input array elements
+        int[] nums = new int[size];
+        System.out.println("Enter the array elements:");
+        for (int i = 0; i < size; i++) {
+            nums[i] = scanner.nextInt();
+        }
+
+        // Input target
+        System.out.print("Enter the target sum: ");
+        int target = scanner.nextInt();
+
+        // Find indices of the two numbers
+        int[] indices = findTwoSum(nums, target);
+
+        // Output the result
+        if (indices.length == 2) {
+            System.out.println("Indices of two numbers are: " + indices[0] + " and " + indices[1]);
+        } else {
+            System.out.println("No solution found.");
+        }
+
+        scanner.close();
+    }
+}
